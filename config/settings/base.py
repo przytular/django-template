@@ -23,6 +23,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'rest_framework',
+    'allauth',
+    'allauth.account',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +56,7 @@ TEMPLATES = [
     },
 ]
 
+SITE_ID = 1
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -77,8 +83,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 ### Authentication
-AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = '/'
 
@@ -87,6 +96,11 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_LOGOUT_ON_GET = True
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 
 ### Localization
